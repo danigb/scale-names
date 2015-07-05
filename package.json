@@ -1,0 +1,30 @@
+{
+  "name": "scale-names",
+  "version": "1.0.0",
+  "description": "Scale names",
+  "main": "names.js",
+  "scripts": {
+    "test": "vows test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danigb/scale-names.git"
+  },
+  "keywords": [
+    "scale",
+    "scales",
+    "names",
+    "music",
+    "theory",
+    "midi"
+  ],
+  "author": "= <=>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danigb/scale-names/issues"
+  },
+  "homepage": "https://github.com/danigb/scale-names#readme",
+  "devDependencies": {
+    "vows": "^0.8.1"
+  }
+}
