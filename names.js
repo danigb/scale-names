@@ -1,22 +1,26 @@
 'use strict'
 
 var NO_NAMES = []
-module.exports = function (dictionary) {
-  var names = {}
-  var decimals = {}
+var nameIndex = {}
+var decimalIndex = {}
 
-  var Names = {
-    all: function () { return Object.keys(decimals) },
-    get: function (decimal) { return names[decimal] || NO_NAMES },
-    getNumber: function (name) { return decimals[name] },
-    set: function (decimal, list) {
-      names[decimal] = list
-      list.forEach(function (name) { decimals[name] = decimal })
-    }
+var Names = {
+  all: function () { return Object.keys(decimalIndex) },
+  get: function (decimal) { return nameIndex[decimal] || NO_NAMES },
+  getDecimal: function (name) { return decimalIndex[name] },
+  set: function (decimal, list) {
+    nameIndex[decimal] = list
+    list.forEach(function (name) { decimalIndex[name] = decimal })
+  },
+  load: function (dictionary) {
+    Object.keys(dictionary).forEach(function (decimal) {
+      Names.set(decimal, dictionary[decimal])
+    })
+  },
+  clear: function () {
+    nameIndex = {}
+    decimalIndex = {}
   }
-
-  Object.keys(dictionary).forEach(function (decimal) {
-    Names.set(decimal, dictionary[decimal])
-  })
-  return Names
 }
+
+module.exports = Names

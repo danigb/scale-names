@@ -2,29 +2,38 @@
 
 A dictionary of musical scales names.
 
-## Usage
+## JSON Data
 
-Install the module: `npm install --save scale-names`
-
-You can get the json data or a thin wrapper:
+You can copy the json files from this repo and use a HttpRequest to load the data in the browser.
+Within npm, you can install the module: `npm install --save scale-names`, and require the json data directly:
 
 ```js
-// raw json data
 var dictionary = require('scale-names/all.json');
-// a thin wrapper
-var Names = require('scale-names')(dictionary);
 ```
 
-Then, you can get the scale names from a number of the inverse:
+The data is in the format of `{ 'scaleNumber': ['array', 'of', 'string', 'names'] }`
+
+## Library
+
+```js
+var Names = require('scale-names')
+Names.load(dictionary)
+```
+
+Then, you can get the scale names from its decimal number, or the inverse:
 
 ```js
 Names.get(2773); // => ['major', 'ionian']
-Names.getNumber('major'); // => 2773
+Names.getDecimal('major'); // => 2773
 ```
 
 If you don't know what this numbers are, take a look at [2048-scales](http://github.com/danigb/2048-scales)
 
 ## API
+
+#### Names.load(dictionary)
+
+Load the JSON data
 
 #### Names.get(decimal)
 
@@ -34,13 +43,13 @@ Return an array of strings. _Always returns an array__ even if its empty:
 Names.get(1231243); // => []
 ```
 
-#### Names.getNumber(name)
+#### Names.getDecimal(name)
 
 Get the decimal number of a scale name, if any.
 
 ```js
-Names.getNumber('major'); // => 2773
-Names.getNumber('unkonwn'); // => null
+Names.getDecimal('major'); // => 2773
+Names.getDecimal('unkonwn'); // => null
 ```
 
 #### Names.all()
@@ -49,4 +58,5 @@ return an array with all the available names
 
 ## License
 
-MIT
+Since most of the data are from impro-visor, this uses the same license:
+GNU Public License 2.0
